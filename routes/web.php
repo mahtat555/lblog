@@ -17,13 +17,22 @@ use App\Http\Controllers\PagesController;
 
 // Home page
 
-Route::get('/', [PagesController::class, 'index']);
+Route::get(
+    '/',
+    [PagesController::class, 'index']
+)->name("home");
 
 // About page
 
-Route::get('/about', [PagesController::class, 'about']);
+Route::get(
+    '/about',
+    [PagesController::class, 'about']
+)->name("about");
 
 
 // Services page
 
-Route::get('/services', [PagesController::class, 'services']);
+Route::get(
+    '/services',
+    [PagesController::class, 'services']
+)->name("services");

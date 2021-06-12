@@ -8,16 +8,27 @@ class PagesController extends Controller
 {
     // index function for Home page
     public function index() {
-        return view("pages.index");
+        $title = "Welcome to LBlog application";
+        return view("pages.index", ['title' => $title]);
     }
 
     // index function for About page
     public function about() {
-        return view("pages.about");
+        $title = "About Us";
+        return view("pages.about",  ['title' => $title]);
     }
 
     // index function for Services page
     public function services() {
-        return view("pages.services");
+        $data = [
+            "title" => "Services",
+            "services" => [
+                "Programming",
+                "Maths",
+                "English Language",
+                "Data Science"
+            ]
+        ];
+        return view("pages.services", $data);
     }
 }
