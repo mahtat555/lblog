@@ -29,7 +29,7 @@
 
                 {{-- Blog page --}}
                 <li class="nav-item">
-                    <a class="nav-link" href="#"> Blog </a>
+                    <a class="nav-link" href="{{ route("posts.index") }}"> Blog </a>
                 </li>
             </ul>
         </div>
