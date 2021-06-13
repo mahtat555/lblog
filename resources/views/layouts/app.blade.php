@@ -11,6 +11,7 @@
 </head>
 
 <body class="antialiased">
+
     {{-- navbar --}}
     @include("layouts.navbar")
 

@@ -11,6 +11,7 @@
 
         <div class="navbar-collapse offcanvas-collapse" id="navbar">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
                 {{-- Home page --}}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route("home") }}"> Home </a>
