@@ -15,7 +15,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy("updated_at", "asc")->paginate(1);
+        $posts = Post::orderBy("updated_at", "desc")->paginate(1);
+
         return view('posts.index', ["posts" => $posts]);
     }
 
@@ -26,7 +27,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -37,7 +38,19 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
+        // Saving data
+        $post = new Post();
+        $post->title = $request->input('title');
+        $post->description = $request->input('description');
+        $post->body = $request->input('body');
+        $post->save();
+
+        return redirect(route("posts.index"))->with("success", "Post created");
     }
 
     /**

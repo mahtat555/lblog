@@ -6,9 +6,9 @@
     <a class="btn btn-dark" href="{{ route("posts.index") }}"> Go Back </a>
     <hr>
 
-    <h1> {{$post->title}} </h1>
+    <h1> {{ $post->title }} </h1>
 
-    <div> {{$post->body}} </div>
+    <div> {!! $post->body !!} </div>
 
     <hr>
     <small>

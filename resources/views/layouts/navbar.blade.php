@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Main navigation">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Main navigation">
     <div class="container">
 
         {{-- Project name --}}
@@ -9,7 +9,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="navbar-collapse offcanvas-collapse" id="navbar">
+        <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                 {{-- Home page --}}
@@ -33,6 +33,14 @@
                 </li>
             </ul>
         </div>
+
+        <ul class="navbar-nav ml-auto">
+
+            {{-- Used to create a new post --}}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route("posts.create") }}"> Create Post </a>
+            </li>
+        </ul>
     </div>
 </nav>
 <br>
