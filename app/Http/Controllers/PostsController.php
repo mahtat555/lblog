@@ -92,7 +92,7 @@ class PostsController extends Controller
         ]);
 
         // Saving data
-        $post = Post::find($id);;
+        $post = Post::find($id);
         $post->title = $request->input('title');
         $post->description = $request->input('description');
         $post->body = $request->input('body');
@@ -109,6 +109,10 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Delete the post from database
+        $post = Post::find($id);
+        $post->delete();
+
+        return redirect(route("posts.index"))->with("success", "Post Removed");
     }
 }

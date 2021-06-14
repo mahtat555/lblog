@@ -20,10 +20,20 @@
         Written on {{$post->created_at}} | Modified on {{$post->updated_at}}
     </small>
 
-    {{--  --}}
+    {{-- Editing a post --}}
     <hr>
     <a class="btn btn-primary" href="{{ route("posts.edit", $post->id) }}">
         Edit
     </a>
+
+    {{-- Delete the post --}}
+    {{ Form::open(['action' => ['App\Http\Controllers\PostsController@destroy',
+        $post->id], 'method' => 'POST', 'class' => "pull-right"]) }}
+
+        {{-- Changing HTTP method from `POST` to `DELETE` --}}
+        {{ Form::hidden('_method', "DELETE") }}
+
+        {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+    {{ Form::close() }}
 
 @endsection

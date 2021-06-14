@@ -3,7 +3,7 @@
 @section('content')
     <h1> Edit Post </h1>
     {!! Form::open(['action' => ['App\Http\Controllers\PostsController@update',
-        $post->id], 'method' => 'POST']); !!}
+        $post->id], 'method' => 'POST']) !!}
 
         {{-- Post Title --}}
         <div class="form-group">
