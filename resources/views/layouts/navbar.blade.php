@@ -53,11 +53,6 @@
                         </li>
                     @endif
                 @else
-                    {{-- Used to create a new post --}}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route("posts.create") }}"> Create Post </a>
-                    </li>
-
                     {{-- User Name --}}
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
@@ -66,6 +61,12 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            {{-- Dashboard Page --}}
+                            <a class="dropdown-item" href="{{ route('dashboard') }}">
+                                {{ __('Dashboard') }}
+                            </a>
+
+                            {{-- Logout  --}}
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}

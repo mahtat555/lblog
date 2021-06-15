@@ -14,7 +14,13 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    {{-- Used to create a new post --}}
+                    <a class="btn btn-success" href="{{ route("posts.create") }}">
+                        Create Post
+                    </a>
+
+                    <hr>
+                    <h3> {{ __("Your Blog Posts :") }} </h3>
                 </div>
             </div>
         </div>
