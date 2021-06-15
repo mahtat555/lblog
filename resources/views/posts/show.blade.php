@@ -16,9 +16,9 @@
 
     {{-- Timestamps --}}
     <hr>
-    <small>
-        Written on {{$post->created_at}} | Modified on {{$post->updated_at}}
-    </small>
+    <small> Written on {{ $post->created_at }} </small> |
+    <small> Modified on {{ $post->updated_at }} </small> |
+    <small> By <a href="#"> {{ $post->user->name }} </a></small>
 
     {{-- Editing a post --}}
     <hr>

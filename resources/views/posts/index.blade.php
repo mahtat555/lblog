@@ -9,13 +9,14 @@
                    <a href="{{route("posts.show", ["post" => $post->id])}}"> {{$post->title}} </a>
                 </h3>
                 <small>
-                    Written on {{$post->created_at}} |
-                    Modified on {{$post->updated_at}}
-                </small>
+                    Written on {{ $post->created_at }} |
+                    Modified on {{ $post->updated_at }} |
+                    By <a href="#"> {{ $post->user->name }} </a>
+            </small>
             </div>
         @endforeach
-        <hr>
 
+        <hr>
         {{$posts->links("pagination::bootstrap-4")}}
 
     @else
