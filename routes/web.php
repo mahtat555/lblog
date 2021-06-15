@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\PostsController;
@@ -17,7 +18,6 @@ use App\Http\Controllers\PostsController;
 */
 
 // Home page
-
 Route::get(
     '/',
     [PagesController::class, 'index']
@@ -25,7 +25,6 @@ Route::get(
 
 
 // About page
-
 Route::get(
     '/about',
     [PagesController::class, 'about']
@@ -33,7 +32,6 @@ Route::get(
 
 
 // Services page
-
 Route::get(
     '/services',
     [PagesController::class, 'services']
@@ -41,5 +39,13 @@ Route::get(
 
 
 // Posts resource
-
 Route::resource('posts', PostsController::class);
+
+// Authentication
+Auth::routes();
+
+//
+Route::get(
+    '/auth',
+    [App\Http\Controllers\HomeController::class, 'index']
+)->name('auth.home');
