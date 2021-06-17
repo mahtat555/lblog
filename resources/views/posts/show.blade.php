@@ -6,6 +6,7 @@
     <a class="btn btn-secondary" href="{{ route("posts.index") }}">
         <i class="fa fa-chevron-left fa-1x" aria-hidden="true"></i> Go Back
     </a>
+
     <hr>
 
     {{-- Post Title --}}
@@ -20,20 +21,25 @@
     <small> Modified on {{ $post->updated_at }} </small> |
     <small> By <a href="#"> {{ $post->user->name }} </a></small>
 
-    {{-- Editing a post --}}
     <hr>
-    <a class="btn btn-primary" href="{{ route("posts.edit", $post->id) }}">
-        Edit
-    </a>
 
-    {{-- Delete the post --}}
-    {{ Form::open(['action' => ['App\Http\Controllers\PostsController@destroy',
-        $post->id], 'method' => 'POST', 'class' => "pull-right"]) }}
+    @auth
+        @if(Auth::user()->id === $post->user_id)
+            {{-- Editing a post --}}
+            <a class="btn btn-primary" href="{{ route("posts.edit", $post->id) }}">
+                Edit
+            </a>
 
-        {{-- Changing HTTP method from `POST` to `DELETE` --}}
-        {{ Form::hidden('_method', "DELETE") }}
+            {{-- Delete the post --}}
+            {{ Form::open(['action' => ['App\Http\Controllers\PostsController@destroy',
+                $post->id], 'method' => 'POST', 'class' => "pull-right"]) }}
 
-        {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-    {{ Form::close() }}
+                {{-- Changing HTTP method from `POST` to `DELETE` --}}
+                {{ Form::hidden('_method', "DELETE") }}
+
+                {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+            {{ Form::close() }}
+        @endif
+    @endauth
 
 @endsection

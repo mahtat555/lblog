@@ -41,12 +41,14 @@
 
                 <!-- Authentication Links -->
                 @guest
+                    {{-- Login to my account --}}
                     @if (Route::has('login'))
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                     @endif
-                    {{--  --}}
+
+                    {{-- Create a new account --}}
                     @if (Route::has('register'))
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
@@ -57,18 +59,28 @@
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <img src="" width="40" height="40" class="rounded-circle">
                             {{ Auth::user()->name }}
                         </a>
+
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             {{-- Dashboard Page --}}
                             <a class="dropdown-item" href="{{ route('dashboard') }}">
+                                <svg class="bi me-2" width="16" height="16"><use xlink:href="#settings"/></svg>
                                 {{ __('Dashboard') }}
+                            </a>
+
+                            {{-- My Profile --}}
+                            <a class="dropdown-item" href="{{ route('dashboard') }}">
+                                <svg class="bi me-2" width="16" height="16"><use xlink:href="#person"/></svg>
+                                {{ __('My Profile') }}
                             </a>
 
                             {{-- Logout  --}}
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
+                                <svg class="bi me-2" width="16" height="16"><use xlink:href="#off"/></svg>
                                 {{ __('Logout') }}
                             </a>
 

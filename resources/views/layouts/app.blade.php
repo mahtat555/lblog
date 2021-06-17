@@ -21,6 +21,10 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
+
+    <!-- SVG Bootstrap Icons -->
+    @include("layouts.svg_bootstrap_icons")
+
 </head>
 
 <body>
