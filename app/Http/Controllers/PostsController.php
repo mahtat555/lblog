@@ -57,7 +57,7 @@ class PostsController extends Controller
             'cover_image' => 'image|nullable|max:1999'
         ]);
 
-        // Hundle image upload
+        // Handle image upload
         if ($request->hasFile("cover_image")) {
             $imageNameToStore = time() . "_"
                 . $request->file("cover_image")->getClientOriginalName();
@@ -138,7 +138,7 @@ class PostsController extends Controller
             )->with("error", "UPDATE: Unauthorized Page");
         }
 
-        // Hundle image upload
+        // Handle image upload
         if ($request->hasFile("cover_image")) {
             // Delete image
             if ($post->cover_image !== "default_image.jpg") {

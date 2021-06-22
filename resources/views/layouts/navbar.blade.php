@@ -59,7 +59,7 @@
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            <img src="" width="40" height="40" class="rounded-circle">
+                            <img src="/storage/profile_pictures/{{ Auth::user()->profile_picture }}" width="40" height="40" class="rounded-circle">
                             {{ Auth::user()->name }}
                         </a>
 
