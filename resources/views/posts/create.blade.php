@@ -3,7 +3,7 @@
 @section('content')
     <h1> Create Post </h1>
     {!! Form::open(['action' => 'App\Http\Controllers\PostsController@store',
-        'method' => 'POST']); !!}
+        'method' => 'POST', "enctype" => "multipart/form-data"]); !!}
 
         {{-- Post Title --}}
         <div class="form-group">
@@ -24,6 +24,11 @@
             {!! Form::label('editor', 'Body') !!}
             {!! Form::textarea('body', '', ['class' => 'form-control',
                 'id' => 'editor', 'placeholder' => 'Body ...']) !!}
+        </div>
+
+        {{-- Cover Image --}}
+        <div class="form-group">
+            {!! Form::file('cover_image') !!}
         </div>
 
         {{-- Submit --}}

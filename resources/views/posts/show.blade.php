@@ -12,6 +12,12 @@
     {{-- Post Title --}}
     <h1> {{ $post->title }} </h1>
 
+    {{-- Cover Image --}}
+    <div class="col-md-6 col-sm-6">
+        <img style="width:100%" src="/storage/cover_images/{{ $post->cover_image }}" />
+    </div>
+    <hr>
+
     {{-- Post Body --}}
     <div> {!! $post->body !!} </div>
 
@@ -21,10 +27,9 @@
     <small> Modified on {{ $post->updated_at }} </small> |
     <small> By <a href="#"> {{ $post->user->name }} </a></small>
 
-    <hr>
-
     @auth
         @if(Auth::user()->id === $post->user_id)
+            <hr>
             {{-- Editing a post --}}
             <a class="btn btn-primary" href="{{ route("posts.edit", $post->id) }}">
                 Edit

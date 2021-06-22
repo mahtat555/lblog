@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\Post;
 
@@ -52,8 +53,23 @@ class PostsController extends Controller
     {
         $this->validate($request, [
             'title' => 'required',
-            'body' => 'required'
+            'body' => 'required',
+            'cover_image' => 'image|nullable|max:1999'
         ]);
+
+        // Hundle image upload
+        if ($request->hasFile("cover_image")) {
+            $imageNameToStore = time() . "_"
+                . $request->file("cover_image")->getClientOriginalName();
+
+            // Upload image
+            $request->file("cover_image")->storeAs(
+                "public/cover_images",
+                $imageNameToStore
+            );
+        } else {
+            $imageNameToStore = "default_cover_image.jpg";
+        }
 
         // Saving data
         $post = new Post();
@@ -61,6 +77,7 @@ class PostsController extends Controller
         $post->title = $request->input('title');
         $post->description = $request->input('description');
         $post->body = $request->input('body');
+        $post->cover_image = $imageNameToStore;
         $post->save();
 
         return redirect(route("posts.index"))->with("success", "Post Created");
@@ -109,7 +126,8 @@ class PostsController extends Controller
     {
         $this->validate($request, [
             'title' => 'required',
-            'body' => 'required'
+            'body' => 'required',
+            'cover_image' => 'image|nullable|max:1999'
         ]);
 
         // check for the correct user
@@ -118,6 +136,24 @@ class PostsController extends Controller
             return redirect(
                 route("posts.index")
             )->with("error", "UPDATE: Unauthorized Page");
+        }
+
+        // Hundle image upload
+        if ($request->hasFile("cover_image")) {
+            // Delete image
+            if ($post->cover_image !== "default_image.jpg") {
+                Storage::delete("public/cover_images/" . $post->cover_image);
+            }
+
+            $imageNameToStore = time() . "_"
+                . $request->file("cover_image")->getClientOriginalName();
+            $post->cover_image = $imageNameToStore;
+
+            // Upload image
+            $request->file("cover_image")->storeAs(
+                "public/cover_images",
+                $imageNameToStore
+            );
         }
 
         // Saving data
@@ -144,6 +180,11 @@ class PostsController extends Controller
             return redirect(
                 route("posts.index")
             )->with("error", "DELETE: Unauthorized Page");
+        }
+
+        // Delete cover image
+        if ($post->cover_image !== "default_cover_image.jpg") {
+            Storage::delete("public/cover_images/" . $post->cover_image);
         }
 
         // Delete the post from database
